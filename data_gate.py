@@ -1,12 +1,28 @@
-# Title: pyDataGate
+#    Title: pyDataGate
+#    Copyright (C) 2015  Sohrab Towfighi
 #
-# Purpose: Given a CSV of numerical data, create a subset of the dataset using
-# instructions supplied by the user, then provide easy plotting ability with the
-# ability to switch variables of the plot.
+#    This program is free software; you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation; either version 2 of the License, or
+#    (at your option) any later version.
+
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+
+#    You should have received a copy of the GNU General Public License along
+#    with this program; if not, write to the Free Software Foundation, Inc.,
+#    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+###############################################################################
 #
-# Note: The CSV must have, as its first row, the column names
+#    Purpose: Given a CSV of numerical data, create a subset of the dataset 
+#    using instructions supplied by the user via GUI, then provide easy 
+#    plotting ability of the different gates of data with the ability to switch 
+#    variables of the plot.
 #
-# Author: Sohrab Towfighi
+#    Note: The CSV must have, as its first row, the column names
+#
 import csv
 import numpy
 import tkinter as Tk
