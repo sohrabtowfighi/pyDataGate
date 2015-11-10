@@ -27,12 +27,12 @@ import csv
 import numpy
 import tkinter as Tk
 import matplotlib
-matplotlib.use('TkAgg')
+#matplotlib.use('TkAgg')
 from numpy import arange, sin, pi, zeros
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg, NavigationToolbar2TkAgg
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+from matplotlib.backends.backend_tkagg import NavigationToolbar2TkAgg
 from matplotlib.backend_bases import key_press_handler
 from matplotlib.figure import Figure
-from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
 
 class Application(object):    
@@ -47,7 +47,7 @@ class Application(object):
         canvas = FigureCanvasTkAgg(f, master=root)
         canvas.show()
         canvas.get_tk_widget().pack(side=Tk.TOP, fill=Tk.BOTH, expand=1)
-    #    canvas.mpl_connect('key_press_event', self.on_key_event)
+        canvas.mpl_connect('button_press_event', self.on_click_event)
         arrays = []
         for a_var in var_names:            
             arrays.append(self._dataset.get_array_from_dicts(a_var))
@@ -55,14 +55,14 @@ class Application(object):
             ax = f.add_subplot(111)
             ax.scatter(arrays[0], arrays[1])
         if len(var_names) == 3:
-            ax = f.add_subplot(111, projection='3d')
-            ax.scatter(arrays[0], arrays[1], arrays[2], c=arrays[2])
+            ax = f.add_subplot(111)
+            ax.scatter(arrays[0], arrays[1], c=arrays[2])
         button = Tk.Button(master=root, text='Quit', command=self.quit)
         button.pack(side=Tk.BOTTOM)
-    #def on_key_event(event):
-    #    click_result= [event.button, event.x, event.y, event.xdata, event.ydata]
-    #    #print('button=%d, x=%d, y=%d, xdata=%f, ydata=%f'%click_result)
-    #    return click_result
+    def on_click_event(self, event):
+        click_result= [event.button, event.x, event.y, event.xdata, event.ydata]
+        print(str(click_result))
+        return click_result
     @staticmethod
     def check_vars(list_of_vars):
         length = len(list_of_vars)
@@ -104,7 +104,7 @@ class DataSet(object):
         return my_array
     
 if __name__ == '__main__':
-    abs_path = '/home/sohrab/GitRepos/pyDataGate/new_data_for_Hadi(2).csv'
-    myapp = Application(abs_path, ["We", "Fr", "COR"])
+    abs_path = 'C:/Users/Sohrab/Documents/pyDataGate/testdata.csv'
+    myapp = Application(abs_path, ["dvdx","dvdy","dzdy"])
     Tk.mainloop()
 
